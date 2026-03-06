@@ -25,7 +25,7 @@
 <body class="geist-font">
     <section class="min-h-screen bg-base-200 flex items-center justify-center">
 
-        <div class="card bg-base-100 w-full max-w-sm space-y-6  shadow-xl p-8">
+        <div class="card bg-base-100 w-full max-w-sm space-y-6 mx-5 shadow-xl p-8">
 
             <div class="flex flex-col items-center justify-center text-center ">
                 <img class="mb-6" src="./assets/github-logo.png" alt="github-logo">
@@ -35,13 +35,13 @@
             
             <fieldset class="fieldset">
               <label class="label font-semibold text-base text-[#1F2937]">Username</label>
-              <input type="text" class="input" placeholder="Enter Username" />
+              <input id="username" type="text" class="input" placeholder="Enter Username" />
               <p class="text-[#4A00FF] text-sm mb-4">Default: admin</p>
 
               <label class="label  font-semibold text-base text-[#1F2937]">Password</label>
-              <input type="password" class="input" placeholder="Enter Password" />
+              <input id="pin" type="password" class="input" placeholder="Enter Password" />
                <p class="text-[#4A00FF] text-sm">Default: admin</p>
-              <button class="btn btn-primary mt-4">Sign In</button>
+              <button id="btn-sign" class="btn btn-primary mt-4">Sign In</button>
             </fieldset>
 
             <div class="flex gap-3 justify-center items-center">
@@ -52,7 +52,7 @@
 
             <div class="text-center">
                 <p class="text-[#64748B] text-sm mb-2">Demo Credentials:</p>
-                <div class="bg-gray-100  py-6">
+                <div class="bg-gray-100 rounded-md py-6">
                     <h2><span class="font-semibold">Username:</span> admin</h2>
                     <h2><span class="font-semibold">Password:</span> admin123</h2>
                 </div>
@@ -61,6 +61,6 @@
     </section>
 
 
-    <script src="index.js"></script>
+    <script src="./script/index.js"></script>
 </body>
 </html>
