@@ -1,4 +1,5 @@
 
+// converted arr to str and show in card;
 const convertedToStr = (array)=>{
     const elements = array.map(element =>{
        return ` <button class=" text-xs py-1.5 px-6 rounded-full font-medium text-[#D97706] bg-[#FFF8DB] border-2 border-[#FDE68A]"> ${element}     
@@ -6,6 +7,9 @@ const convertedToStr = (array)=>{
     })
     return elements.join(" ")
 }
+
+const totalCount = 
+
 
 //1. load all card and show all tab;
 const  loadCard = async()=>{
@@ -31,8 +35,7 @@ const loadOpenCard= async()=>{
 
 
 // 3.load closed status data;
-
-const loadClosedData = async()=>{
+const loadClosedCard = async()=>{
     const res = await fetch(url);
     const json = await res.json();
     
@@ -103,4 +106,4 @@ const displayCard = (cards)=>{
     });
 }
 
-// loadCard()
+loadCard()
