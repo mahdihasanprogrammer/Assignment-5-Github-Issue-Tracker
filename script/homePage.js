@@ -7,7 +7,7 @@ const convertedToStr = (array)=>{
     return elements.join(" ")
 }
 
-// load all card and show all tab;
+//1. load all card and show all tab;
 const  loadCard = async()=>{
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
@@ -16,7 +16,24 @@ const  loadCard = async()=>{
     displayCard(json.data)
 }
 
+// 2. load open status card:
+const loadOpenCard= async()=>{
+      const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
+    const res = await fetch(url);
+    const json = await res.json();
+    
+    const data = json.data;
+    
+    const filterOpenData = data.filter(openData => openData.status=='open');
+    displayCard(filterOpenData)
+}
+
+
+
+
+
+// show in display;
 const displayCard = (cards)=>{
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML="";
