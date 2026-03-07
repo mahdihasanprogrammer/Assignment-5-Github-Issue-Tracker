@@ -8,7 +8,15 @@ const convertedToStr = (array)=>{
     return elements.join(" ")
 }
 
-const totalCount = 
+// update all tab, open tab, closed tab count;
+const updateCount = ()=>{
+    const cardContainer = document.getElementById('card-container');
+
+    const totalCount = cardContainer.children.length;
+    const countCard = document.getElementById('count-card');
+    countCard.innerText=`${totalCount} Issues`
+
+}
 
 
 //1. load all card and show all tab;
@@ -36,12 +44,14 @@ const loadOpenCard= async()=>{
 
 // 3.load closed status data;
 const loadClosedCard = async()=>{
+    const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+
     const res = await fetch(url);
     const json = await res.json();
     
     const data = json.data;
     
-    const filterClosedData = data.filter(openData => openData.status=='closed');
+    const filterClosedData = data.filter(closedData => closedData.status=='closed');
     displayCard(filterClosedData)
 }
 
@@ -102,6 +112,7 @@ const displayCard = (cards)=>{
         `
 
         cardContainer.appendChild(createCard)
+        updateCount()
         
     });
 }
