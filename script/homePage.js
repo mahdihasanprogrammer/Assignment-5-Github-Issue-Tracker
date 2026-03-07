@@ -30,6 +30,18 @@ const loadOpenCard= async()=>{
 }
 
 
+// 3.load closed status data;
+
+const loadClosedData = async()=>{
+    const res = await fetch(url);
+    const json = await res.json();
+    
+    const data = json.data;
+    
+    const filterClosedData = data.filter(openData => openData.status=='closed');
+    displayCard(filterClosedData)
+}
+
 
 
 
