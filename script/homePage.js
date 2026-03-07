@@ -2,8 +2,21 @@
 // converted arr to str and show in card;
 const convertedToStr = (array)=>{
     const elements = array.map(element =>{
-       return ` <button class=" text-xs py-1.5 px-6 rounded-full font-medium text-[#D97706] bg-[#FFF8DB] border-2 border-[#FDE68A]"> ${element}     
-         </button>`
+       if(element=='bug'){
+            return ` <button class="flex items-center gap-1 text-xs py-1.5 px-3 rounded-full font-medium text-[#EF4444] bg-[#FEECEC] border-2 border-[#FECACA]">
+                <i class="fa-solid fa-bug"></i>${element.toUpperCase()}     
+            </button>`
+       }
+       else if(element=='help wanted'){
+             return `<button class="flex items-center gap-1 text-xs py-1.5 px-3 rounded-full    font-medium text-[#D97706] bg-[#FFF8DB] border-2 border-[#FDE68A]">
+                <i class="fa-solid fa-life-ring"></i> ${element.toUpperCase()}         
+            </button>`
+       }
+       else if(element=='enhancement'){
+            return `<button class="flex items-center gap-1 text-xs py-1.5 px-3 rounded-full     font-medium text-[#00A96E] bg-[#DEFCE8] border-2 border-[#BBF7D0]">
+                <i class="fa-solid fa-life-ring"></i> ${element.toUpperCase()}         
+            </button>`
+       }
     })
     return elements.join(" ")
 }
@@ -56,6 +69,15 @@ const loadClosedCard = async()=>{
 }
 
 
+//4. show card detail in modal;
+const loadCardDetail = async(id)=>{
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+
+    const res = await fetch(url);
+    const json = res.json();
+    console.log(json)
+}
+
 
 
 // show in display;
@@ -77,18 +99,23 @@ const displayCard = (cards)=>{
             createCard.classList.add('border-t-4','border-purple-600')
         }
        
-
+    
         createCard.innerHTML=`
-        <div>
+        <div onclick="loadCardDetail(${card.id})">
             <div class="p-4 space-y-3">
 
                 <div class="flex justify-between items-center gap-1">
 
                     ${card.status=='open'?
                         `<img class="size-6" src="./assets/Open-Status.png" alt="">`
-                        : `<img class="size-6" src="./assets/Closed- Status .png" alt="">`}
-
-                    <button class="text-xs py-1.5 px-6 bg-[#FEECEC] text-red-500 rounded-full font-medium">${card.priority}</button>
+                        : `<img class="size-6" src="./assets/Closed-Status.png" alt="">`}
+                    
+                    ${card.priority=='high'?
+                        `<button class="text-sm py-1.5 px-4 bg-[#FEECEC] text-red-500 rounded-full font-medium">${card.priority.toUpperCase()}</button>`:
+                         `${card.priority=='medium' ? 
+                            `<button class="text-sm py-1.5 px-4 text-[#D97706] bg-[#FFF8DB] rounded-full font-medium">${card.priority.toUpperCase()}</button>`
+                             : `<button class="text-sm py-1.5 px-4 text-[#9CA3AF] bg-[#EEEFF2] rounded-full font-medium">${card.priority.toUpperCase()}</button>`
+                        }`}
                 </div>
 
                 <div>
