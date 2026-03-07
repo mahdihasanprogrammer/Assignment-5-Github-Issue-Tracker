@@ -14,7 +14,18 @@ const convertedToStr = (array)=>{
        }
        else if(element=='enhancement'){
             return `<button class="flex items-center gap-1 text-xs py-1.5 px-3 rounded-full     font-medium text-[#00A96E] bg-[#DEFCE8] border-2 border-[#BBF7D0]">
-                <i class="fa-solid fa-life-ring"></i> ${element.toUpperCase()}         
+            <img src="./assets/Sparkle.png" alt="Sparkle.png"> ${element.toUpperCase()}         
+            </button>`
+       }
+       else if(element=='good first issue'){
+             return `<button class="flex items-center gap-1 text-xs py-1.5 px-3 rounded-full    font-medium text-[#9CA3AF] bg-[#EEEFF2]">
+                 ${element.toUpperCase()}         
+            </button>`
+       }
+
+       else if(element=='documentation'){
+             return `<button class="flex items-center gap-1 text-xs py-1.5 px-3 rounded-full    font-medium text-[#D97706] bg-[#FFF8DB] border-2 border-[#FDE68A]">
+              ${element.toUpperCase()}         
             </button>`
        }
     })
