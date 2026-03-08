@@ -103,6 +103,17 @@ const displayCard = (cards)=>{
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML="";
 
+    // if cards length will zero , show this message;
+     if(cards.length == 0){
+        updateCount()
+            cardContainer.innerHTML=`
+                <h2 class="text-center col-span-4 my-5 text-2xl sm:text-3xl font-semibold text-red-600">
+                    No Card Found
+                </h2>
+            `  
+            return
+        }
+
     cards.forEach(card => {
         
         const createCard = document.createElement('div');
@@ -114,6 +125,7 @@ const displayCard = (cards)=>{
             createCard.classList.add('border-t-4','border-purple-600')
         }
        
+    
     
         createCard.innerHTML=`
         <div onclick="loadCardDetail(${card.id})">
