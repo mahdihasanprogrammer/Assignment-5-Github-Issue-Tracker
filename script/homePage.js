@@ -43,6 +43,7 @@ const updateCount = ()=>{
 }
 
 
+
 //1. load all card and show all tab;
 const  loadCard = async()=>{
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
@@ -209,3 +210,21 @@ const displayCardDetail = (modalCard)=>{
 }
 
 loadCard()
+
+
+// search card by title and show in display;
+const searchBtn = document.getElementById('btn-search');
+searchBtn.addEventListener('click', async ()=>{
+    const inputValue = document.getElementById('input-search').value;
+     
+    // get data from api
+    const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+    const res =  await fetch(url);
+    const json = await res.json();
+    // console.log(json.data)
+
+    const filterData = json.data.filter(output => {
+       return output.title.toLowerCase().includes(inputValue.toLowerCase())
+    });
+    displayCard(filterData)
+})
