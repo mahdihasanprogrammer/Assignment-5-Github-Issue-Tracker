@@ -115,7 +115,7 @@ const displayCard = (cards)=>{
        
     
         createCard.innerHTML=`
-        <div >
+        <div onclick="loadCardDetail(${card.id})">
             <div class="p-4 space-y-3">
 
                 <div class="flex justify-between items-center gap-1">
@@ -137,7 +137,7 @@ const displayCard = (cards)=>{
                     <p class="text-xs font-normal text-[#64748B]">${card.description}</p>
                 </div>
 
-                <div onclick="loadCardDetail(${card.id})" class="flex gap-1 sm:gap-2 xl:gap-1 flex-wrap">
+                <div class="flex gap-1 sm:gap-2 xl:gap-1 flex-wrap">
                  ${convertedToStr(card.labels)}
                 </div>
             </div>
