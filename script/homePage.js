@@ -141,6 +141,7 @@ const displayCard = (cards)=>{
                     No Card Found
                 </h2>
             `  
+            manageSpinner(false)
             return
         }
 
