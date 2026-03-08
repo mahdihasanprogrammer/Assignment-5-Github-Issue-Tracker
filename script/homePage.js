@@ -42,10 +42,38 @@ const updateCount = ()=>{
 
 }
 
+// set spinner for all cards;
+const manageSpinner = (status)=>{
+    if(status===true){
+        document.getElementById('card-container').classList.add('hidden');
+        document.getElementById('spinner-container').classList.remove('hidden');
+    }
+    else{
+         document.getElementById('spinner-container').classList.add('hidden');
+          document.getElementById('card-container').classList.remove('hidden');
+    }
+}
+
+
+// set spinner for modal;
+const modalSpinner = (status)=>{
+     if(status===true){
+        document.getElementById('modal-card-container').classList.add('hidden');
+        document.getElementById('modal-spinner').classList.remove('hidden');
+    }
+    else{
+         document.getElementById('modal-spinner').classList.add('hidden');
+          document.getElementById('modal-card-container').classList.remove('hidden');
+    }
+}
+
+
 
 
 //1. load all card and show all tab;
 const  loadCard = async()=>{
+
+    manageSpinner(true)
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
     const res = await fetch(url);
@@ -55,7 +83,8 @@ const  loadCard = async()=>{
 
 // 2. load open status card:
 const loadOpenCard= async()=>{
-      const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+    manageSpinner(true)
+    const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
     const res = await fetch(url);
     const json = await res.json();
@@ -69,6 +98,7 @@ const loadOpenCard= async()=>{
 
 // 3.load closed status data;
 const loadClosedCard = async()=>{
+    manageSpinner(true)
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
     const res = await fetch(url);
@@ -83,7 +113,7 @@ const loadClosedCard = async()=>{
 
 //4. show card detail in modal;
 const loadCardDetail= async(id)=>{
- 
+   modalSpinner(true)
     const url =`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
 
     const res = await fetch(url);
@@ -167,6 +197,7 @@ const displayCard = (cards)=>{
 
         cardContainer.appendChild(createCard)
         updateCount()
+        manageSpinner(false)
         
     });
 }
@@ -219,7 +250,9 @@ const displayCardDetail = (modalCard)=>{
                 </div>
     `
         card_modal.showModal();
-}
+        modalSpinner(false)
+        
+};
 
 loadCard()
 
@@ -229,6 +262,7 @@ const searchBtn = document.getElementById('btn-search');
 searchBtn.addEventListener('click', async ()=>{
     const inputValue = document.getElementById('input-search').value;
      
+    manageSpinner(true)
     // get data from api
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
     const res =  await fetch(url);
