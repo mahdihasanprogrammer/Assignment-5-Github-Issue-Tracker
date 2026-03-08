@@ -136,12 +136,12 @@ const displayCard = (cards)=>{
     // if cards length will zero , show this message;
      if(cards.length == 0){
         updateCount()
+         manageSpinner(false)
             cardContainer.innerHTML=`
                 <h2 class="text-center col-span-4 my-5 text-2xl sm:text-3xl font-semibold text-red-600">
                     No Card Found
                 </h2>
             `  
-            manageSpinner(false)
             return
         }
 
