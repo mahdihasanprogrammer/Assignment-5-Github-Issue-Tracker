@@ -72,7 +72,7 @@ const modalSpinner = (status)=>{
     }
     else{
          document.getElementById('modal-spinner').classList.add('hidden');
-          document.getElementById('modal-card-container').classList.remove('hidden');
+        document.getElementById('modal-card-container').classList.remove('hidden');
     }
 }
 
@@ -165,6 +165,7 @@ const loadCardDetail= async(id)=>{
 }
 
 
+// ----------------------------------display data;-----------------------------
 
 //1 show card in display;
 const displayCard = (cards)=>{
@@ -173,13 +174,19 @@ const displayCard = (cards)=>{
 
     // if cards length will zero , show this message;
      if(cards.length == 0){
-        removeActive()
+       
         updateCount()
          manageSpinner(false)
             cardContainer.innerHTML=`
-                <h2 class="text-center col-span-4 my-5 text-2xl sm:text-3xl font-semibold text-red-600">
+                
+            <div class="my-5 col-span-4 mx-auto text-center">
+                <div class="text-orange-500 mb-3 bg-gray-200 p-3 rounded-full text-4xl">
+                    <i class="fa-solid fa-magnifying-glass-minus block"></i>
+                </div>
+                <h2 class="text-center text-2xl sm:text-3xl font-semibold text-gray-600">
                     No Card Found
                 </h2>
+            </div>
             `  
             return
         }
@@ -190,9 +197,9 @@ const displayCard = (cards)=>{
          createCard.className='bg-base-100 shadow  rounded-lg flex items-end';
 
         if(card.status=='open'){
-            createCard.classList.add('border-t-4','border-green-600')
+            createCard.classList.add('border-t-5','border-green-600')
         }else{
-            createCard.classList.add('border-t-4','border-purple-600')
+            createCard.classList.add('border-t-5','border-purple-600')
         }
        
     
