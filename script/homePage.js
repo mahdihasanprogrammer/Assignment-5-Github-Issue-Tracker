@@ -18,7 +18,7 @@ const convertedToStr = (array)=>{
             </button>`
        }
        else if(element=='good first issue'){
-             return `<button class="flex items-center gap-1 text-xs py-1.5 px-3 rounded-full    font-medium text-[#9CA3AF] bg-[#EEEFF2]">
+             return `<button class="flex items-center gap-1 text-xs py-1.5 px-3 rounded-full    font-medium text-[#647aa1] bg-[#eaeffc] border-2 border-[#dde2f2]">
                  ${element.toUpperCase()}         
             </button>`
        }
@@ -81,26 +81,29 @@ const loadClosedCard = async()=>{
 
 
 //4. show card detail in modal;
-const loadCardDetail = async(id)=>{
-    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+const loadCardDetail= async(id)=>{
+ 
+    const url =`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
 
     const res = await fetch(url);
-    const json = res.json();
-    console.log(json)
+
+    const json =await res.json()
+    console.log(json.data)
+
+    displayCardDetail(json.data)
+
+   
 }
 
 
 
-// show in display;
+//1 show card in display;
 const displayCard = (cards)=>{
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML="";
 
     cards.forEach(card => {
         
-        
-
-
         const createCard = document.createElement('div');
          createCard.className='bg-base-100 shadow  rounded-lg flex items-end';
 
@@ -112,7 +115,7 @@ const displayCard = (cards)=>{
        
     
         createCard.innerHTML=`
-        <div onclick="loadCardDetail(${card.id})">
+        <div >
             <div class="p-4 space-y-3">
 
                 <div class="flex justify-between items-center gap-1">
@@ -134,7 +137,7 @@ const displayCard = (cards)=>{
                     <p class="text-xs font-normal text-[#64748B]">${card.description}</p>
                 </div>
 
-                <div class="flex gap-1 sm:gap-2 xl:gap-1 flex-wrap">
+                <div onclick="loadCardDetail(${card.id})" class="flex gap-1 sm:gap-2 xl:gap-1 flex-wrap">
                  ${convertedToStr(card.labels)}
                 </div>
             </div>
@@ -153,6 +156,56 @@ const displayCard = (cards)=>{
         updateCount()
         
     });
+}
+
+
+// 2. show modal ;
+const displayCardDetail = (modalCard)=>{
+     
+    // 1. get container ;
+    const modalCardContainer = document.getElementById('modal-card-container');
+    modalCardContainer.innerHTML=`
+         <!-- modal card -->
+                <div class="space-y-6">
+                         <!--card  heading -->
+                 <div class="space-y-2">
+                  <h2 class="text-2xl font-bold text-[#1F2937]">${modalCard.title}</h2>
+
+                    <div class="flex gap-3 items-center text-[#64748B]">
+                    ${modalCard.status=='open'?
+                        `<button class="text-sm py-1.5 px-4 bg-green-600 text-white rounded-full font-medium">${modalCard.status}</button>`
+                        : `<button class="text-sm py-1.5 px-4 bg-purple-600 text-white    rounded-full font-medium">${modalCard.status}</button>`
+                    }
+                       
+                        <div class="size-3 rounded-full bg-[#64748B]"></div>
+                        <h2 class="text-xs mr-2">Opened by ${modalCard.author}</h2>
+                        <div class="size-3 rounded-full bg-[#64748B]"></div>
+                        <h2 class="text-xs">${new Date(modalCard.createdAt).toLocaleDateString('en-GB')}</h2>
+                    </div>
+                 </div>
+
+                 <!-- card labels -->
+                  <div class="flex gap-2">${convertedToStr(modalCard.labels)}</div>
+
+                  <!-- description -->
+                  <p class="text-[#64748B]"> ${modalCard.description}</p>
+
+                  <!-- card Assignee and priority -->
+                   <div class="text-[#64748B] bg-base-200 p-4 flex gap-20">
+                      <!-- left content -->
+                      <div class="space-y-1">
+                       <p >Assignee:</p>
+                        <h2 class="font-bold text-[#1F2937]">${modalCard.assignee ? modalCard.assignee : 'Not Found'}</h2>
+                      </div>
+                      <!-- right content -->
+                      <div class="space-y-1">
+                        <p>Priority:</p>
+                         <button class="text-sm py-1 px-4 bg-red-600 text-white rounded-full font-medium">${modalCard.priority.toUpperCase()}</button>
+                      </div>
+                   </div>
+                </div>
+    `
+        card_modal.showModal();
 }
 
 loadCard()
