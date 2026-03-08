@@ -42,6 +42,15 @@ const updateCount = ()=>{
 
 }
 
+
+// remove all btn color;
+const removeActive=()=>{
+    const allBtn =document.querySelectorAll('.tab-btn');
+    allBtn.forEach(btn => {
+        btn.classList.remove('btn-primary')
+    })
+}
+
 // set spinner for all cards;
 const manageSpinner = (status)=>{
     if(status===true){
@@ -72,8 +81,17 @@ const modalSpinner = (status)=>{
 
 //1. load all card and show all tab;
 const  loadCard = async()=>{
+    // remove all btn color ;
+    removeActive()
 
+    // set active btn color;
+    const tabBtn1 = document.getElementById('tab-btn1');
+    tabBtn1.classList.add('btn-primary')
+
+    // set spinner
     manageSpinner(true)
+
+    // get data from api
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
     const res = await fetch(url);
@@ -83,7 +101,17 @@ const  loadCard = async()=>{
 
 // 2. load open status card:
 const loadOpenCard= async()=>{
+    // remove all btn color ;
+    removeActive()
+
+    // set active btn color;
+    const tabBtn2 = document.getElementById('tab-btn2');
+    tabBtn2.classList.add('btn-primary')
+
+    // set spinner
     manageSpinner(true)
+
+    // get data from api
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
     const res = await fetch(url);
@@ -98,6 +126,16 @@ const loadOpenCard= async()=>{
 
 // 3.load closed status data;
 const loadClosedCard = async()=>{
+
+    // remove all btn color ;
+    removeActive()
+
+    // set active btn color;
+    const tabBtn3 = document.getElementById('tab-btn3');
+    tabBtn3.classList.add('btn-primary')
+
+
+    // set spinner
     manageSpinner(true)
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
@@ -135,6 +173,7 @@ const displayCard = (cards)=>{
 
     // if cards length will zero , show this message;
      if(cards.length == 0){
+        removeActive()
         updateCount()
          manageSpinner(false)
             cardContainer.innerHTML=`

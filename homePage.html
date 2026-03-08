@@ -63,9 +63,9 @@
 
         <!-- tab section -->
          <section class="flex gap-3 p-4 rounded-md bg-base-100 shadow mb-4">
-            <button onclick="loadCard()" class="btn btn-primary px-6">All</button>
-            <button onclick="loadOpenCard()" class="btn px-6">Open</button>
-            <button onclick="loadClosedCard()" class="btn px-6">Closed</button>
+            <button id="tab-btn1" onclick="loadCard()" class=" tab-btn btn btn-primary  px-6">All</button>
+            <button id="tab-btn2" onclick="loadOpenCard()" class=" tab-btn btn px-6 ">Open</button>
+            <button id="tab-btn3" onclick="loadClosedCard()" class=" tab-btn btn px-6 ">Closed</button>
          </section>
 
 
@@ -123,10 +123,10 @@
               <span class="loading loading-bars loading-xl"></span>
             </div>
 
-            <div  class="modal-box">
+            <div  class=" modal-box">
 
               <!-- modal container -->
-               <div id="modal-card-container">
+               <div id="modal-card-container" >
                   <!-- show modal dynamically -->
                </div>
 
