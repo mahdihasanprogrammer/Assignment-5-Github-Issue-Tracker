@@ -282,14 +282,14 @@ const displayCardDetail = (modalCard)=>{
                   <p class="text-[#64748B]"> ${modalCard.description}</p>
 
                   <!-- card Assignee and priority -->
-                   <div class="text-[#64748B] bg-base-200 p-4 flex gap-20">
+                   <div class="text-[#64748B] bg-base-200 p-4 flex justify-between">
                       <!-- left content -->
-                      <div class="space-y-1">
+                      <div class="space-y-2">
                        <p >Assignee:</p>
-                        <h2 class="font-bold text-[#1F2937]">${modalCard.assignee ? modalCard.assignee : 'Not Found'}</h2>
+                        <h2 class="font-bold text-[#1F2937]">${modalCard.assignee ? modalCard.assignee : 'Unassignee'}</h2>
                       </div>
                       <!-- right content -->
-                      <div class="space-y-1">
+                      <div class="space-y-2">
                         <p>Priority:</p>
                          <button class="text-sm py-1 px-4 bg-red-600 text-white rounded-full font-medium">${modalCard.priority.toUpperCase()}</button>
                       </div>
@@ -307,6 +307,7 @@ loadCard()
 // search card by title and show in display;
 const searchBtn = document.getElementById('btn-search');
 searchBtn.addEventListener('click', async ()=>{
+    
     const inputValue = document.getElementById('input-search').value;
      
     manageSpinner(true)
